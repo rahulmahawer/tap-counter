@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Increment right count on 'D' key press
   document.addEventListener('keydown', function(event) {
-    if (event.key === 'c' || event.key === 'D') {
+    if (event.key === 'd' || event.key === 'D') {
       rightCount++;
       rightCountDisplay.textContent = rightCount;
       localStorage.setItem('rightTapCount', rightCount);
