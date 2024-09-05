@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('rightTapCount', rightCount);
   });
 
-  // Increment left count on 'A' key press
+  // Increment left count on 'C' key press
   document.addEventListener('keydown', function(event) {
     if (event.key === 'c' || event.key === 'C') {
       leftCount++;
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Increment right count on 'L' key press
+  // Increment right count on 'D' key press
   document.addEventListener('keydown', function(event) {
     if (event.key === 'c' || event.key === 'D') {
       rightCount++;
