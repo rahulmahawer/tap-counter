@@ -50,18 +50,18 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('rightTapCount', rightCount);
   });
 
-  // Increment left count on 'C' key press
+  // Increment left count on 'D' key press
   document.addEventListener('keydown', function(event) {
-    if (event.key === 'c' || event.key === 'C') {
+    if (event.key === 'd' || event.key === 'D') {
       leftCount++;
       leftCountDisplay.textContent = leftCount;
       localStorage.setItem('leftTapCount', leftCount);
     }
   });
 
-  // Increment right count on 'D' key press
+  // Increment right count on 'C' key press
   document.addEventListener('keydown', function(event) {
-    if (event.key === 'd' || event.key === 'D') {
+    if (event.key === 'c' || event.key === 'C') {
       rightCount++;
       rightCountDisplay.textContent = rightCount;
       localStorage.setItem('rightTapCount', rightCount);
