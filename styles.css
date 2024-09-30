@@ -1,4 +1,11 @@
 body {
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Everest%2C_Nepal%2C_Himalayas.jpg/800px-Everest%2C_Nepal%2C_Himalayas.jpg');
+    background-size: cover; /* Cover the entire area */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+{
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
