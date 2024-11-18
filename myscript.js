@@ -67,4 +67,16 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.setItem('rightTapCount', rightCount);
     }
   });
+
+  // Undo function to restore the previous count
+  undoButton.addEventListener('click', function() {
+    if (previousCount !== null) {
+      count = previousCount; // Restore the previous count
+      countDisplay.textContent = count;
+      localStorage.setItem('tapCount', count);
+      previousCount = null; // Clear the previous count after undo
+    } else {
+      alert("No reset to undo.");
+    }
+  });
 });
