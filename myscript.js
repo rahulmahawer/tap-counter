@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const countDisplay = document.getElementById('count');
   const incrementButton = document.getElementById('increment');
   const resetButton = document.getElementById('reset');
-  const undoButton = document.querySelector('button[onclick="undo()"]');
   
   // Get elements for left and right counters
   const leftCountDisplay = document.getElementById('left-count');
@@ -25,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
   let count = parseInt(localStorage.getItem('tapCount')) || 0;
   let leftCount = parseInt(localStorage.getItem('leftTapCount')) || 0;
   let rightCount = parseInt(localStorage.getItem('rightTapCount')) || 0;
-  let previousCount = null; // Variable to hold the previous count
   
   // Display counts
   countDisplay.textContent = count;
@@ -52,6 +50,18 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('rightTapCount', rightCount);
   });
 
+  // Undo function to restore the previous count
+  undoButton.addEventListener('click', function() {
+    if (previousCount !== null) {
+      count = previousCount; // Restore the previous count
+      countDisplay.textContent = count;
+      localStorage.setItem('tapCount', count);
+      previousCount = null; // Clear the previous count after undo
+    } else {
+      alert("No reset to undo.");
+    }
+  });
+
   // Increment left count on 'D' key press
   document.addEventListener('keydown', function(event) {
     if (event.key === 'd' || event.key === 'D') {
@@ -69,13 +79,6 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.setItem('rightTapCount', rightCount);
     }
   });
-  
-  resetButton.addEventListener('click', function() {
-    previousCount = count; // Store the current count before resetting
-    count = 0;
-    countDisplay.textContent = count;
-    localStorage.setItem('tapCount', count);
-  });
 
   // Undo function to restore the previous count
   undoButton.addEventListener('click', function() {
@@ -88,5 +91,4 @@ document.addEventListener('DOMContentLoaded', function() {
       alert("No reset to undo.");
     }
   });
-  
 });
