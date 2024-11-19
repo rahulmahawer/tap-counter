@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const countDisplay = document.getElementById('count');
   const incrementButton = document.getElementById('increment');
   const resetButton = document.getElementById('reset');
+  const undoButton = document.querySelector('button[onclick="undo()"]');
   
   // Get elements for left and right counters
   const leftCountDisplay = document.getElementById('left-count');
@@ -24,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let count = parseInt(localStorage.getItem('tapCount')) || 0;
   let leftCount = parseInt(localStorage.getItem('leftTapCount')) || 0;
   let rightCount = parseInt(localStorage.getItem('rightTapCount')) || 0;
+  let previousCount = null; // Variable to hold the previous count
   
   // Display counts
   countDisplay.textContent = count;
@@ -67,24 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
       localStorage.setItem('rightTapCount', rightCount);
     }
   });
-
-  document.addEventListener('DOMContentLoaded', function() {
-  const countDisplay = document.getElementById('count');
-  const incrementButton = document.getElementById('increment');
-  const resetButton = document.getElementById('reset');
-  const undoButton = document.querySelector('button[onclick="undo()"]'); // Undo button
   
-  let count = parseInt(localStorage.getItem('tapCount')) || 0;
-  let previousCount = null; // Variable to hold the previous count
-
-  countDisplay.textContent = count;
-
-  incrementButton.addEventListener('click', function() {
-    count++;
-    countDisplay.textContent = count;
-    localStorage.setItem('tapCount', count);
-  });
-
   resetButton.addEventListener('click', function() {
     previousCount = count; // Store the current count before resetting
     count = 0;
