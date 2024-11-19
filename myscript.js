@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
       localStorage.setItem('tapCount', count);
       previousCount = null; // Clear the previous count after undo
     } else {
-      alert("No action to undo.");
+      alert("oops... already done");
     }
   };
 
