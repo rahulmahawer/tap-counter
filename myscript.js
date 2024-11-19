@@ -1,25 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
   // Get the textarea element for the notepad
   const notepad = document.getElementById('notepad-content');
-  
+
   // Load the saved content from localStorage if available
   notepad.value = localStorage.getItem('autosave') || '';
-  
+
   // Listen for changes in the textarea content
   notepad.addEventListener('input', function () {
     localStorage.setItem('autosave', notepad.value);
   });
-  
+
   // Get elements for main tap counter
   const countDisplay = document.getElementById('count');
   const incrementButton = document.getElementById('increment');
   const resetButton = document.getElementById('reset');
-  const undoButton = document.getElementById('undo'); // Defined here
 
   // Get elements for left and right counters
   const leftCountDisplay = document.getElementById('left-count');
   const rightCountDisplay = document.getElementById('right-count');
-  
+
   // Load counts from localStorage or default to 0
   let count = parseInt(localStorage.getItem('tapCount')) || 0;
   let leftCount = parseInt(localStorage.getItem('leftTapCount')) || 0;
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
   countDisplay.textContent = count;
   leftCountDisplay.textContent = leftCount;
   rightCountDisplay.textContent = rightCount;
-  
+
   // Increment main count on button click
   incrementButton.addEventListener('click', function () {
     previousCount = count; // Save the previous count
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
     countDisplay.textContent = count;
     localStorage.setItem('tapCount', count);
   });
-  
+
   // Reset all counts on button click
   resetButton.addEventListener('click', function () {
     previousCount = count; // Save the previous count
@@ -54,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Undo function to restore the previous count
-  undoButton.addEventListener('click', function () {
+  window.undo = function () {
     if (previousCount !== null) {
       count = previousCount; // Restore the previous count
       countDisplay.textContent = count;
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       alert("No action to undo.");
     }
-  });
+  };
 
   // Increment left count on 'D' key press
   document.addEventListener('keydown', function (event) {
