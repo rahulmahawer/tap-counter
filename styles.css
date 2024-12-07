@@ -1,8 +1,4 @@
 body{
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* Makes the image stay fixed while scrolling */
-  background-position: center;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
