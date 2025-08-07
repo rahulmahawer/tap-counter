@@ -64,13 +64,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  <!--// Increment left count on 'D' key press
+  // Increment left count on 'D' key press
   document.addEventListener('keydown', function (event) {
     if (event.key === 'd' || event.key === 'D') {
       leftCount++;
       leftCountDisplay.textContent = leftCount;
       localStorage.setItem('leftTapCount', leftCount);
-    }-->
+    }
   });
 
   // Increment right count on 'C' key press
@@ -82,4 +82,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 }); 
+
 
