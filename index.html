@@ -20,6 +20,24 @@
       height: 100%; /* Full height of the viewport */
     }
 
+    .recommendation-box {
+      background-color: #fffbea;
+      border-left: 4px solid #f1c40f;
+      padding: 12px 16px;
+      border-radius: 6px;
+      font-family: Arial, sans-serif;
+      color: #8a6d3b;
+      display: flex;
+      align-items: center;
+      max-width: 800px;
+      margin-bottom: 20px;
+    }
+
+    .recommendation-box span:first-child {
+      font-size: 20px;
+      margin-right: 10px;
+    }
+
     .notepad {
       width: 30%; /* Adjust as needed */
       max-width: 800px; /* Maximum width */
@@ -62,6 +80,14 @@
   </style>
 </head>
 <body>
+  <!-- Recommendation Info Box -->
+  <div class="recommendation-box">
+    <span>⚠️</span>
+    <span>
+      <strong>Recommendation:</strong> For best results when downloading the certificate, please use a laptop or larger device and download the certificate.
+    </span>
+  </div>
+	
   <div class="notepad">
     <a href="https://raw.githubusercontent.com/rahulmahawer/tap-counter/main/README.md" target="_blank">Tap Guide!</a>
     <h1>My Notepad</h1>
@@ -90,4 +116,5 @@
   <script src="myscript.js"></script>
 </body>
 </html>
+
 
