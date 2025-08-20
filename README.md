@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/ce172f05-5c3b-4301-ac1d-e6c6613863d1
+**URL**: https://rahulmahawer.github.io/tap-counter
 
 ## How can I edit this code?
 
