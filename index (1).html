@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tap Counter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .description {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .counter-display {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #6e8efb;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tap-button {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        
+        .tap-button:active {
+            transform: scale(0.95);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .reset-btn {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .reset-btn:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+        }
+        
+        .save-btn {
+            background: #4ecdc4;
+            color: white;
+        }
+        
+        .save-btn:hover {
+            background: #3dbbb2;
+            transform: translateY(-2px);
+        }
+        
+        .history {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(110, 142, 251, 0.1);
+            border-radius: 15px;
+            text-align: left;
+        }
+        
+        .history h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .history-item {
+            padding: 10px 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .history-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .pulse {
+            animation: pulseAnimation 0.5s;
+        }
+        
+        @keyframes pulseAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .counter-display {
+                font-size: 5rem;
+            }
+            
+            .tap-button {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-tap"></i> Tap Counter</h1>
+        <p class="description">Press the button below to count your taps</p>
+        
+        <div class="counter-display" id="counter">0</div>
+        
+        <div class="tap-button" id="tapButton">
+            <span>TAP ME</span>
+        </div>
+        
+        <div class="controls">
+            <button class="btn reset-btn" id="resetButton">
+                <i class="fas fa-redo"></i> Reset
+            </button>
+            <button class="btn save-btn" id="saveButton">
+                <i class="fas fa-save"></i> Save Count
+            </button>
+        </div>
+        
+        <div class="history">
+            <h2><i class="fas fa-history"></i> History</h2>
+            <div class="history-list" id="historyList">
+                <!-- History items will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const counterElement = document.getElementById('counter');
+            const tapButton = document.getElementById('tapButton');
+            const resetButton = document.getElementById('resetButton');
+            const saveButton = document.getElementById('saveButton');
+            const historyList = document.getElementById('historyList');
+            
+            let count = 0;
+            let history = [];
+            
+            // Load saved data from localStorage if available
+            if (localStorage.getItem('tapCount')) {
+                count = parseInt(localStorage.getItem('tapCount'));
+                counterElement.textContent = count;
+            }
+            
+            if (localStorage.getItem('tapHistory')) {
+                history = JSON.parse(localStorage.getItem('tapHistory'));
+                updateHistoryDisplay();
+            }
+            
+            // Function to handle tap
+            function handleTap() {
+                count++;
+                counterElement.textContent = count;
+                localStorage.setItem('tapCount', count);
+                
+                // Add animation effect
+                counterElement.classList.remove('pulse');
+                void counterElement.offsetWidth; // Trigger reflow
+                counterElement.classList.add('pulse');
+            }
+            
+            // Function to reset counter
+            function resetCounter() {
+                count = 0;
+                counterElement.textContent = count;
+                localStorage.setItem('tapCount', count);
+            }
+            
+            // Function to save current count to history
+            function saveToHistory() {
+                if (count > 0) {
+                    const now = new Date();
+                    const timestamp = now.toLocaleString();
+                    history.unshift({
+                        count: count,
+                        timestamp: timestamp
+                    });
+                    
+                    // Keep only the last 10 history items
+                    if (history.length > 10) {
+                        history.pop();
+                    }
+                    
+                    localStorage.setItem('tapHistory', JSON.stringify(history));
+                    updateHistoryDisplay();
+                    resetCounter();
+                }
+            }
+            
+            // Function to update history display
+            function updateHistoryDisplay() {
+                historyList.innerHTML = '';
+                
+                if (history.length === 0) {
+                    historyList.innerHTML = '<p class="history-empty">No history yet</p>';
+                    return;
+                }
+                
+                history.forEach(item => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    historyItem.innerHTML = `
+                        <span>${item.count} taps</span>
+                        <span class="history-timestamp">${item.timestamp}</span>
+                    `;
+                    historyList.appendChild(historyItem);
+                });
+            }
+            
+            // Event listeners
+            tapButton.addEventListener('click', handleTap);
+            
+            // Also allow keyboard tapping with spacebar or enter
+            document.addEventListener('keydown', function(event) {
+                if (event.code === 'Space' || event.code === 'Enter') {
+                    event.preventDefault();
+                    handleTap();
+                }
+            });
+            
+            resetButton.addEventListener('click', resetCounter);
+            saveButton.addEventListener('click', saveToHistory);
+            
+            // Initialize history display
+            updateHistoryDisplay();
+        });
+    </script>
+</body>
+</html>
